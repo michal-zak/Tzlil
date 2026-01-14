@@ -6,18 +6,34 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DA12EC8B2F176E770062E825 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA12EC892F176E770062E825 /* ContentView.swift */; };
+		DA12EC8C2F176E770062E825 /* TzlilApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA12EC8A2F176E770062E825 /* TzlilApp.swift */; };
+		DA12EC8D2F176E770062E825 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA12EC882F176E770062E825 /* Assets.xcassets */; };
+		DA12EC932F17708E0062E825 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA12EC912F1770880062E825 /* Song.swift */; };
+		DA12EC9B2F1772350062E825 /* SongRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA12EC9A2F1772290062E825 /* SongRowView.swift */; };
+		DA12EC9D2F1772430062E825 /* MiniPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA12EC9C2F1772390062E825 /* MiniPlayerView.swift */; };
+		DA12ECA02F1772740062E825 /* TzlilState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA12EC9F2F17725F0062E825 /* TzlilState.swift */; };
+		DA12ECA22F1772890062E825 /* TzlilIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA12ECA12F17727D0062E825 /* TzlilIntent.swift */; };
+		DA12ECA42F1772970062E825 /* TzlilStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA12ECA32F17728E0062E825 /* TzlilStore.swift */; };
+		DA12ECA72F1772C30062E825 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA12ECA62F1772BB0062E825 /* AudioPlayer.swift */; };
+		DA12ECA92F1772D10062E825 /* MusicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA12ECA82F1772C70062E825 /* MusicService.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		DA03DD712F16C5EF009AEADA /* Tzlil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tzlil.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA12EC882F176E770062E825 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DA12EC892F176E770062E825 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DA12EC8A2F176E770062E825 /* TzlilApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TzlilApp.swift; sourceTree = "<group>"; };
+		DA12EC912F1770880062E825 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		DA12EC9A2F1772290062E825 /* SongRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongRowView.swift; sourceTree = "<group>"; };
+		DA12EC9C2F1772390062E825 /* MiniPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerView.swift; sourceTree = "<group>"; };
+		DA12EC9F2F17725F0062E825 /* TzlilState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TzlilState.swift; sourceTree = "<group>"; };
+		DA12ECA12F17727D0062E825 /* TzlilIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TzlilIntent.swift; sourceTree = "<group>"; };
+		DA12ECA32F17728E0062E825 /* TzlilStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TzlilStore.swift; sourceTree = "<group>"; };
+		DA12ECA62F1772BB0062E825 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		DA12ECA82F1772C70062E825 /* MusicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		DA03DD732F16C5EF009AEADA /* Tzlil */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			name = Tzlil;
-			path = /Users/user945522/Desktop/Tzlil/Tzlil;
-			sourceTree = "<absolute>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		DA03DD6E2F16C5EF009AEADA /* Frameworks */ = {
@@ -33,7 +49,7 @@
 		DA03DD682F16C5EF009AEADA = {
 			isa = PBXGroup;
 			children = (
-				DA03DD732F16C5EF009AEADA /* Tzlil */,
+				DA12EC952F1771530062E825 /* Tzlil */,
 				DA03DD722F16C5EF009AEADA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -44,6 +60,72 @@
 				DA03DD712F16C5EF009AEADA /* Tzlil.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DA12EC952F1771530062E825 /* Tzlil */ = {
+			isa = PBXGroup;
+			children = (
+				DA12EC962F17715E0062E825 /* App */,
+				DA12EC972F17716F0062E825 /* Models */,
+				DA12ECA52F1772B00062E825 /* Services */,
+				DA12EC9E2F17724C0062E825 /* Architecture */,
+				DA12EC982F1772050062E825 /* Views */,
+				DA12EC882F176E770062E825 /* Assets.xcassets */,
+			);
+			path = Tzlil;
+			sourceTree = "<group>";
+		};
+		DA12EC962F17715E0062E825 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				DA12EC8A2F176E770062E825 /* TzlilApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		DA12EC972F17716F0062E825 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DA12EC912F1770880062E825 /* Song.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DA12EC982F1772050062E825 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DA12EC892F176E770062E825 /* ContentView.swift */,
+				DA12EC992F1772180062E825 /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DA12EC992F1772180062E825 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				DA12EC9C2F1772390062E825 /* MiniPlayerView.swift */,
+				DA12EC9A2F1772290062E825 /* SongRowView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		DA12EC9E2F17724C0062E825 /* Architecture */ = {
+			isa = PBXGroup;
+			children = (
+				DA12EC9F2F17725F0062E825 /* TzlilState.swift */,
+				DA12ECA12F17727D0062E825 /* TzlilIntent.swift */,
+				DA12ECA32F17728E0062E825 /* TzlilStore.swift */,
+			);
+			path = Architecture;
+			sourceTree = "<group>";
+		};
+		DA12ECA52F1772B00062E825 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DA12ECA82F1772C70062E825 /* MusicService.swift */,
+				DA12ECA62F1772BB0062E825 /* AudioPlayer.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -60,9 +142,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				DA03DD732F16C5EF009AEADA /* Tzlil */,
 			);
 			name = Tzlil;
 			packageProductDependencies = (
@@ -110,6 +189,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA12EC8D2F176E770062E825 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +200,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA12EC932F17708E0062E825 /* Song.swift in Sources */,
+				DA12ECA92F1772D10062E825 /* MusicService.swift in Sources */,
+				DA12ECA02F1772740062E825 /* TzlilState.swift in Sources */,
+				DA12ECA72F1772C30062E825 /* AudioPlayer.swift in Sources */,
+				DA12EC8B2F176E770062E825 /* ContentView.swift in Sources */,
+				DA12EC9B2F1772350062E825 /* SongRowView.swift in Sources */,
+				DA12EC9D2F1772430062E825 /* MiniPlayerView.swift in Sources */,
+				DA12ECA22F1772890062E825 /* TzlilIntent.swift in Sources */,
+				DA12EC8C2F176E770062E825 /* TzlilApp.swift in Sources */,
+				DA12ECA42F1772970062E825 /* TzlilStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,9 +342,20 @@
 				DEVELOPMENT_TEAM = K8PSTEW7HG;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Tzlil/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -296,9 +397,20 @@
 				DEVELOPMENT_TEAM = K8PSTEW7HG;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Tzlil/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
