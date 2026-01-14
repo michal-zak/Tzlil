@@ -11,7 +11,7 @@ import SwiftUI
 struct TzlilApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabView() // הטעינה של המסך הראשי החדש
         }
     }
 }

@@ -10,6 +10,8 @@ import SwiftUI
 struct SongRowView: View {
     let song: Song
     let isPlaying: Bool
+    let isFavorite: Bool
+    let onFavoriteToggle: () -> Void
     
     var body: some View {
         HStack {
@@ -22,22 +24,24 @@ struct SongRowView: View {
             .cornerRadius(8)
             
             VStack(alignment: .leading) {
-                Text(song.trackName)
-                    .font(.body)
-                    .lineLimit(1)
-                Text(song.artistName)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+                Text(song.trackName).font(.body).lineLimit(1)
+                Text(song.artistName).font(.caption).foregroundColor(.secondary)
             }
             
             Spacer()
             
+            Button(action: onFavoriteToggle) {
+                Image(systemName: isFavorite ? "star.fill" : "star")
+                    .foregroundColor(isFavorite ? .yellow : .gray)
+                    .padding(8)
+            }
+            .buttonStyle(PlainButtonStyle())
+            
             if isPlaying {
-                Image(systemName: "waveform")
-                    .foregroundColor(.accentColor)
+                Image(systemName: "waveform").foregroundColor(.blue)
             }
         }
         .padding(.vertical, 4)
-        .contentShape(Rectangle()) // לחיצה על כל השורה
+        .contentShape(Rectangle())
     }
 }

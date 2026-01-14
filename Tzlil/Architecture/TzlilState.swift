@@ -9,15 +9,18 @@ import Foundation
 
 struct TzlilState {
     var songs: [Song] = []
+    var favoriteSongs: [Song] = [] // רשימת המועדפים
     var currentSong: Song?
     var isPlaying: Bool = false
     var isLoading: Bool = false
     var error: String?
-    var currentTime: Double = 0.0 // הזמן הנוכחי בשניות
-    var duration: Double = 30.0   // רוב ה-Preview ב-iTunes הם 30 שניות
     
-    // Computed helper (Optional)
-    var showMiniPlayer: Bool {
-        return currentSong != nil
+    // נתונים לנגן
+    var currentTime: Double = 0.0
+    var duration: Double = 30.0 // אורך ה-Preview בדרך כלל
+    
+    // בדיקה מהירה אם שיר הוא מועדף
+    func isFavorite(_ song: Song) -> Bool {
+        return favoriteSongs.contains(where: { $0.id == song.id })
     }
 }

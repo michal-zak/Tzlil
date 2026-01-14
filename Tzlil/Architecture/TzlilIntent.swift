@@ -8,9 +8,11 @@
 import Foundation
 
 enum TzlilIntent {
-    case loadSongs(searchTerm: String)
+    case inputChanged(String)          // הקלדה בחיפוש (Live)
+    case loadSongs(searchTerm: String) // ביצוע החיפוש
     case play(Song)
     case togglePlayPause
     case audioFinished
-    case updateTime(Double) // עדכון זמן
+    case updateTime(Double)
+    case toggleFavorite(Song)          // הוספה/הסרה ממועדפים
 }

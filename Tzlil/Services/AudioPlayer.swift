@@ -7,26 +7,28 @@
 
 import AVFoundation
 
-// פרוטוקול פשוט כדי שנוכל להחליף מימושים או לעשות Mock בטסטים
 protocol AudioPlayerProtocol {
     func play(url: URL)
     func togglePlayPause(isPlaying: Bool)
     var didFinishPlaying: (() -> Void)? { get set }
-    var onTimeUpdate: ((Double) -> Void)? { get set } // Callback חדש
+    var onTimeUpdate: ((Double) -> Void)? { get set }
 }
 
 class AudioPlayer: NSObject, AudioPlayerProtocol {
     private var player: AVPlayer?
     var didFinishPlaying: (() -> Void)?
     var onTimeUpdate: ((Double) -> Void)?
-    private var timeObserver: Any? // לשמירת הרפרנס
+    private var timeObserver: Any?
     
     override init() {
         super.init()
+        // הגדרת סשן אודיו כדי שינגן גם כשהמתג על שקט
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+        try? AVAudioSession.sharedInstance().setActive(true)
     }
     
     func play(url: URL) {
-        // 1. ניקוי יסודי של הנגן הישן לפני יצירת החדש
+        // 1. ניקוי נגן קודם למניעת קריסות וזליגות זיכרון
         if let player = player {
             player.pause()
             if let observer = timeObserver {
@@ -34,23 +36,20 @@ class AudioPlayer: NSObject, AudioPlayerProtocol {
                 timeObserver = nil
             }
         }
-        
-        // ניקוי האזנות NotificationCenter ישנות
         NotificationCenter.default.removeObserver(self)
         
-        // 2. יצירת הנגן החדש
+        // 2. יצירת נגן חדש
         let item = AVPlayerItem(url: url)
         player = AVPlayer(playerItem: item)
         player?.play()
         
-        // 3. הוספת האזנה לזמן לנגן החדש
+        // 3. דיווח זמן כל חצי שנייה
         timeObserver = player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.5, preferredTimescale: 600), queue: .main) { [weak self] time in
-            // בדיקה שהנגן הנוכחי הוא עדיין הנגן שרצינו (מונע Race Conditions)
             guard let self = self, self.player?.currentItem?.status == .readyToPlay else { return }
             self.onTimeUpdate?(time.seconds)
         }
         
-        // האזנה לסיום השיר
+        // 4. האזנה לסיום השיר
         NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: item, queue: .main) { [weak self] _ in
             self?.didFinishPlaying?()
         }

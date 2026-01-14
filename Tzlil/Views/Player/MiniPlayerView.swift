@@ -16,26 +16,18 @@ struct MiniPlayerView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            // חלק עליון: תמונה, טקסט וכפתור
             HStack {
                 AsyncImage(url: URL(string: song.artworkUrl100)) { image in
                     image.resizable()
                 } placeholder: {
-                    Color.gray.opacity(0.3)
+                    Color.gray
                 }
                 .frame(width: 44, height: 44)
                 .cornerRadius(6)
                 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(song.trackName)
-                        .font(.headline)
-                        .fontDesign(.rounded)
-                        .lineLimit(1)
-                    
-                    Text(song.artistName)
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                        .lineLimit(1)
+                    Text(song.trackName).font(.headline).lineLimit(1)
+                    Text(song.artistName).font(.caption).foregroundColor(.secondary).lineLimit(1)
                 }
                 
                 Spacer()
@@ -46,18 +38,17 @@ struct MiniPlayerView: View {
                         .foregroundColor(.primary)
                 }
             }
-            .padding(12) // ריווח פנימי רק לחלק העליון
+            .padding(12)
             
-            // חלק תחתון: פס התקדמות (נצמד לקצוות)
             ProgressView(value: currentTime, total: duration > 0 ? duration : 30.0)
                 .progressViewStyle(LinearProgressViewStyle())
-                .tint(.blue) // צבע הפס
-                .frame(height: 2) // דק ועדין
+                .tint(.blue)
+                .frame(height: 2)
                 .padding(.bottom, 0)
         }
-        .background(.ultraThinMaterial) // אפקט הזכוכית
+        .background(.ultraThinMaterial)
         .cornerRadius(16)
         .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
-        .padding(.horizontal) // ריווח מהצדדים של המסך
+        .padding(.horizontal)
     }
 }
