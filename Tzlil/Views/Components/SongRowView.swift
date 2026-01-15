@@ -30,12 +30,17 @@ struct SongRowView: View {
             
             Spacer()
             
-            Button(action: onFavoriteToggle) {
+            Button(action: {
+                HapticManager.shared.selection() // 📳 רטט עדין
+                onFavoriteToggle()
+            }) {
                 Image(systemName: isFavorite ? "star.fill" : "star")
                     .foregroundColor(isFavorite ? .yellow : .gray)
                     .padding(8)
             }
             .buttonStyle(PlainButtonStyle())
+            .accessibilityLabel(isFavorite ? "הסר ממועדפים" : "הוסף למועדפים")
+            .accessibilityHint("לחיצה כפולה תשנה את הסטטוס")
             
             if isPlaying {
                 Image(systemName: "waveform").foregroundColor(.blue)
@@ -43,5 +48,8 @@ struct SongRowView: View {
         }
         .padding(.vertical, 4)
         .contentShape(Rectangle())
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel("\(song.trackName), מאת \(song.artistName)")
+        .accessibilityAddTraits(isPlaying ? [.isSelected] : [])
     }
 }

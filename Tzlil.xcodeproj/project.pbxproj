@@ -18,6 +18,7 @@
 		DA12ECA42F1772970062E825 /* TzlilStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA12ECA32F17728E0062E825 /* TzlilStore.swift */; };
 		DA12ECA72F1772C30062E825 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA12ECA62F1772BB0062E825 /* AudioPlayer.swift */; };
 		DA12ECA92F1772D10062E825 /* MusicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA12ECA82F1772C70062E825 /* MusicService.swift */; };
+		DAD68C822F18BD6D006452D6 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD68C812F18BD5C006452D6 /* HapticManager.swift */; };
 		DADFB7582F17A35A00410173 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADFB7572F17A35000410173 /* FavoritesView.swift */; };
 		DADFB75B2F17A38100410173 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADFB75A2F17A37900410173 /* SearchView.swift */; };
 /* End PBXBuildFile section */
@@ -35,6 +36,7 @@
 		DA12ECA32F17728E0062E825 /* TzlilStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TzlilStore.swift; sourceTree = "<group>"; };
 		DA12ECA62F1772BB0062E825 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		DA12ECA82F1772C70062E825 /* MusicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicService.swift; sourceTree = "<group>"; };
+		DAD68C812F18BD5C006452D6 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		DADFB7572F17A35000410173 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		DADFB75A2F17A37900410173 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,6 +130,7 @@
 		DA12ECA52F1772B00062E825 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				DAD68C812F18BD5C006452D6 /* HapticManager.swift */,
 				DA12ECA82F1772C70062E825 /* MusicService.swift */,
 				DA12ECA62F1772BB0062E825 /* AudioPlayer.swift */,
 			);
@@ -238,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAD68C822F18BD6D006452D6 /* HapticManager.swift in Sources */,
 				DADFB7582F17A35A00410173 /* FavoritesView.swift in Sources */,
 				DA12EC932F17708E0062E825 /* Song.swift in Sources */,
 				DA12ECA92F1772D10062E825 /* MusicService.swift in Sources */,
