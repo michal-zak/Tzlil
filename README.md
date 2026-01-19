@@ -3,8 +3,10 @@
 **Tzlil** is a modern, native iOS music player application built with **SwiftUI**. 
 The project demonstrates advanced state management using the **MVI (Model-View-Intent)** architecture, emphasizing Unidirectional Data Flow, testability, and a polished user experience conforming to Apple's Human Interface Guidelines.
 
-![App Banner](https://via.placeholder.com/1200x400?text=Tzlil+App+Showcase) 
-*(Replace this link with a banner or remove it)*
+<img width="100" height="100" alt="1024" src="https://github.com/user-attachments/assets/e2c1ffc4-998d-4abd-b47f-062e45f3049c" />
+<img width="294.75" height="639" alt="Simulator Screenshot - iPhone 16 - 2026-01-19 at 10 33 55" src="https://github.com/user-attachments/assets/62cedb01-fe38-4182-b103-24a0cf6119b3" />
+<img width="294.75" height="639" alt="Simulator Screenshot - iPhone 16 - 2026-01-19 at 10 33 20" src="https://github.com/user-attachments/assets/3bf7ca7c-aace-415d-9bc4-81fb94578262" />
+
 
 ## Features
 
