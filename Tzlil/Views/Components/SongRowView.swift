@@ -23,6 +23,7 @@ struct SongRowView: View {
             }
             .frame(width: 50, height: 50)
             .cornerRadius(8)
+            .accessibilityHidden(true)
             
             VStack(alignment: .leading) {
                 HStack(spacing: 4) {
@@ -36,7 +37,12 @@ struct SongRowView: View {
                     }
                 }
                 Text(song.artistName).font(.caption).foregroundColor(.secondary)
-            }
+            }.accessibilityElement(children: .combine)
+                .accessibilityLabel(
+                    (isRecommended ? "מומלץ עבורך, " : "") +
+                    "\(song.trackName), מאת \(song.artistName)"
+                )
+                .accessibilityHint("לחיצה כפולה כדי לנגן")
             
             Spacer()
             
@@ -50,16 +56,15 @@ struct SongRowView: View {
             }
             .buttonStyle(PlainButtonStyle())
             .accessibilityLabel(isFavorite ? "הסר ממועדפים" : "הוסף למועדפים")
-            .accessibilityHint("לחיצה כפולה תשנה את הסטטוס")
             
             if isPlaying {
-                Image(systemName: "waveform").foregroundColor(.blue)
+                Image(systemName: "waveform")
+                    .foregroundColor(.blue)
+                    .accessibilityHidden(true)
             }
         }
         .padding(.vertical, 4)
         .contentShape(Rectangle())
-        .accessibilityElement(children: .contain)
-        .accessibilityLabel("\(song.trackName), מאת \(song.artistName)")
         .accessibilityAddTraits(isPlaying ? [.isSelected] : [])
     }
 }

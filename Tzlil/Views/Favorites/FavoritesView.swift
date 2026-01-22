@@ -18,6 +18,7 @@ struct FavoritesView: View {
                         Image(systemName: "star.slash")
                             .font(.system(size: 60))
                             .foregroundColor(.gray.opacity(0.3))
+                            .accessibilityHidden(true) // הסתרה
                         Text("אין עדיין שירים במועדפים")
                             .foregroundColor(.secondary)
                     }
@@ -29,6 +30,7 @@ struct FavoritesView: View {
                             song: song,
                             isPlaying: isPlayingThis,
                             isFavorite: true,
+                            isRecommended: false, // במועדפים אין צורך בסימון המלצה
                             onFavoriteToggle: { store.dispatch(.toggleFavorite(song)) }
                         )
                         .onTapGesture {
