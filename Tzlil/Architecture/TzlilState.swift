@@ -15,6 +15,9 @@ struct TzlilState {
     var isLoading: Bool = false
     var error: String?
     
+    // המשתנה הזה יחזיק את שם הז'אנר שהמשתמש הכי אוהב כרגע
+    var recommendedGenre: String? = nil
+
     // נתונים לנגן
     var currentTime: Double = 0.0
     var duration: Double = 30.0 // אורך ה-Preview בדרך כלל

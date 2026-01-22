@@ -11,6 +11,7 @@ struct SongRowView: View {
     let song: Song
     let isPlaying: Bool
     let isFavorite: Bool
+    var isRecommended: Bool = false // פרמטר חדש עם ברירת מחדל
     let onFavoriteToggle: () -> Void
     
     var body: some View {
@@ -24,7 +25,16 @@ struct SongRowView: View {
             .cornerRadius(8)
             
             VStack(alignment: .leading) {
-                Text(song.trackName).font(.body).lineLimit(1)
+                HStack(spacing: 4) {
+                    Text(song.trackName).font(.body).lineLimit(1)
+                    
+                    // אם זה שיר מומלץ - נציג אייקון
+                    if isRecommended {
+                        Image(systemName: "sparkles")
+                            .font(.caption2)
+                            .foregroundColor(.yellow)
+                    }
+                }
                 Text(song.artistName).font(.caption).foregroundColor(.secondary)
             }
             

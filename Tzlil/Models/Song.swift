@@ -13,10 +13,14 @@ struct Song: Identifiable, Codable, Equatable {
     let artistName: String
     let previewUrl: String
     let artworkUrl100: String
+    
+    // שינוי: הוספנו ז'אנר, והוא אופציונלי למקרה ש-Apple לא יחזירו אותו
+    let primaryGenreName: String?
 
     enum CodingKeys: String, CodingKey {
         case id = "trackId"
         case trackName, artistName, previewUrl, artworkUrl100
+        case primaryGenreName
     }
 }
 

@@ -26,22 +26,44 @@ struct SearchView: View {
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
-                    List(store.state.songs) { song in
-                        let isPlayingThis = (store.state.currentSong?.id == song.id) && store.state.isPlaying
-                        let isFav = store.state.isFavorite(song)
-                        
-                        SongRowView(
-                            song: song,
-                            isPlaying: isPlayingThis,
-                            isFavorite: isFav,
-                            onFavoriteToggle: { store.dispatch(.toggleFavorite(song)) }
-                        )
-                        .onTapGesture {
-                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                            store.dispatch(.play(song))
+                    List {
+                        // בדיקה: האם יש לנו המלצות להציג?
+                        if let recGenre = store.state.recommendedGenre, !store.state.songs.isEmpty {
+                            
+                            // סינון לקבוצות (בזמן אמת ל-UI)
+                            let recommended = store.state.songs.filter { $0.primaryGenreName == recGenre }
+                            let others = store.state.songs.filter { $0.primaryGenreName != recGenre }
+                            
+                            // קבוצה 1: מומלצים
+                            if !recommended.isEmpty {
+                                Section(header: HStack {
+                                    Text("במיוחד בשבילך")
+                                    Image(systemName: "sparkles").foregroundColor(.yellow)
+                                    Text("(\(recGenre))").font(.caption).foregroundColor(.gray)
+                                }) {
+                                    ForEach(recommended) { song in
+                                        songRow(for: song, isRecommended: true)
+                                    }
+                                }
+                            }
+                            
+                            // קבוצה 2: השאר
+                            if !others.isEmpty {
+                                Section(header: Text("תוצאות נוספות")) {
+                                    ForEach(others) { song in
+                                        songRow(for: song, isRecommended: false)
+                                    }
+                                }
+                            }
+                            
+                        } else {
+                            // אם אין המלצות, מציגים רשימה רגילה
+                            ForEach(store.state.songs) { song in
+                                songRow(for: song, isRecommended: false)
+                            }
                         }
                     }
-                    .listStyle(.plain)
+                    .listStyle(.insetGrouped) // סגנון מודרני יותר שמפריד יפה סקשנים
                 }
             }
             .navigationTitle("חיפוש 🎵")
@@ -49,6 +71,25 @@ struct SearchView: View {
             .onChange(of: searchText) { newValue in
                 store.dispatch(.inputChanged(newValue))
             }
+        }
+    }
+    
+    // פונקציית עזר לבניית השורה כדי למנוע שכפול קוד
+    @ViewBuilder
+    private func songRow(for song: Song, isRecommended: Bool) -> some View {
+        let isPlayingThis = (store.state.currentSong?.id == song.id) && store.state.isPlaying
+        let isFav = store.state.isFavorite(song)
+        
+        SongRowView(
+            song: song,
+            isPlaying: isPlayingThis,
+            isFavorite: isFav,
+            isRecommended: isRecommended, // העברת פרמטר ההמלצה
+            onFavoriteToggle: { store.dispatch(.toggleFavorite(song)) }
+        )
+        .onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            store.dispatch(.play(song))
         }
     }
 }

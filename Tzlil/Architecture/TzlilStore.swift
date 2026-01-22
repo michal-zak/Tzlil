@@ -15,7 +15,6 @@ class TzlilStore: ObservableObject {
     private var audioPlayer: AudioPlayerProtocol
     private var cancellables = Set<AnyCancellable>()
     
-    // צינור לחיפוש עם השהייה (Debounce)
     private let searchInputSubject = PassthroughSubject<String, Never>()
     
     init(musicService: MusicServiceProtocol = MusicService(),
@@ -23,9 +22,8 @@ class TzlilStore: ObservableObject {
         self.musicService = musicService
         self.audioPlayer = audioPlayer
         
-        loadFavorites() // טעינת המועדפים מהזיכרון בעת העלייה
+        loadFavorites()
         
-        // הגדרת Callback מהנגן
         self.audioPlayer.didFinishPlaying = { [weak self] in
             self?.dispatch(.audioFinished)
         }
@@ -33,7 +31,6 @@ class TzlilStore: ObservableObject {
             self?.dispatch(.updateTime(time))
         }
         
-        // הגדרת Debounce לחיפוש
         searchInputSubject
             .debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)
             .removeDuplicates()
@@ -46,6 +43,17 @@ class TzlilStore: ObservableObject {
                 }
             }
             .store(in: &cancellables)
+    }
+    
+    // חישוב עזר: מה הז'אנר האהוב ביותר כרגע?
+    private func getFavoriteGenre() -> String? {
+        let genres = state.favoriteSongs.compactMap { $0.primaryGenreName }
+        if genres.isEmpty { return nil }
+        
+        let counts = genres.reduce(into: [:]) { counts, genre in
+            counts[genre, default: 0] += 1
+        }
+        return counts.max(by: { $0.value < $1.value })?.key
     }
     
     func dispatch(_ intent: TzlilIntent) {
@@ -64,7 +72,27 @@ class TzlilStore: ObservableObject {
                         self?.state.error = error.localizedDescription
                     }
                 }, receiveValue: { [weak self] songs in
-                    self?.state.songs = songs
+                    guard let self = self else { return }
+                    
+                    // 1. חישוב הז'אנר המועדף
+                    let favGenre = self.getFavoriteGenre()
+                    
+                    // 2. עדכון ה-State כדי שה-UI ידע מה להציג
+                    self.state.recommendedGenre = favGenre
+                    
+                    // 3. מיון התוצאות
+                    if let favGenre = favGenre {
+                        print("⭐️ User loves: \(favGenre). Reordering results...")
+                        let sortedSongs = songs.sorted { s1, s2 in
+                            if s1.primaryGenreName == favGenre && s2.primaryGenreName != favGenre {
+                                return true
+                            }
+                            return false
+                        }
+                        self.state.songs = sortedSongs
+                    } else {
+                        self.state.songs = songs
+                    }
                 })
                 .store(in: &cancellables)
             
@@ -92,10 +120,12 @@ class TzlilStore: ObservableObject {
                 state.favoriteSongs.append(song)
             }
             saveFavorites()
+            
+            // עדכון הדאטה ל-AI
+            MLDataManager.shared.exportTrainingData(favorites: state.favoriteSongs)
         }
     }
     
-    // MARK: - Persistence
     private func saveFavorites() {
         if let encoded = try? JSONEncoder().encode(state.favoriteSongs) {
             UserDefaults.standard.set(encoded, forKey: "favorites")
